@@ -9,6 +9,7 @@ A lógica do Barcode Scanner foi replicada com sucesso do projeto original! O co
 - ✅ Scanner de múltiplos tipos de código de barras (QR, EAN-13, EAN-8, Code-128, etc.)
 - ✅ Controle de delay entre leituras (padrão: 1500ms)
 - ✅ Validação de 2 leituras consecutivas antes de processar
+- ✅ **Ignora automaticamente CEPs** (formato 00000-000 ou 00000000)
 - ✅ Suporte a lanterna (torch)
 - ✅ Controle de ativação do scanner
 - ✅ Linha vermelha de indicação
@@ -88,21 +89,26 @@ Define todos os tipos de códigos suportados:
 
 ## 🔄 Lógica Implementada
 
-A lógica é **idêntica** ao projeto original:
+A lógica é **idêntica** ao projeto original + validações extras:
 
-1. **Validação de Leituras Consecutivas**:
+1. **Validação de CEP**:
+   - Ignora automaticamente códigos no formato de CEP
+   - Formatos ignorados: `00000-000` ou `00000000`
+   - Previne leituras acidentais de endereços
+
+2. **Validação de Leituras Consecutivas**:
    - Requer 2 leituras do mesmo código para validar
    - Previne leituras acidentais ou parciais
 
-2. **Controle de Delay**:
+3. **Controle de Delay**:
    - Delay configurável entre leituras (padrão 1500ms)
    - Previne múltiplas leituras do mesmo código
 
-3. **Estado de Delay**:
+4. **Estado de Delay**:
    - Após processar um código, entra em estado de delay
    - Ignora novas leituras durante o delay
 
-4. **Refs para Performance**:
+5. **Refs para Performance**:
    - Usa refs para evitar re-renders desnecessários
    - `lastScanTime`, `lastScannedCode`, `consecutiveValidScans`
 
@@ -143,6 +149,7 @@ A lógica é **idêntica** ao projeto original:
 | Leitura de QR Code | ✅ | Funcional |
 | Leitura de EAN-13 | ✅ | Funcional |
 | Validação Dupla | ✅ | Implementado |
+| Filtro de CEP | ✅ | Ignora automaticamente |
 | Delay entre Leituras | ✅ | Implementado |
 | Toggle Scanner | ✅ | Funcional |
 | Lanterna | ✅ | Funcional |
@@ -208,6 +215,7 @@ O app detecta automaticamente o tema do dispositivo e ajusta as cores:
 - Verifique permissões de câmera
 - Tente melhorar a iluminação
 - Certifique-se que o código está dentro do frame
+- CEPs são ignorados automaticamente (comportamento esperado)
 
 ### Performance lenta
 - Teste em dispositivo físico em vez do emulador

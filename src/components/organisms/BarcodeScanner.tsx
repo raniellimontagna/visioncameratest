@@ -8,6 +8,7 @@ import {
   useCodeScanner,
 } from "react-native-vision-camera";
 import { barcodeTypes } from "@/constants";
+import { isValidBarcode } from "@/utils";
 
 const styles = StyleSheet.create({
   camera: {
@@ -90,6 +91,12 @@ function BarcodeScannerComponent(props: BarcodeScannerProps): ReactElement | nul
 
         const code = codes[0];
         const currentTime = Date.now();
+
+        // Valida se não é um CEP
+        if (!code.value || !isValidBarcode(code.value)) {
+          console.log("Código inválido ou CEP ignorado:", code.value);
+          return;
+        }
 
         if (code.value === lastScannedCode.current) {
           consecutiveValidScans.current++;
