@@ -51,5 +51,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Este app precisa de acesso à câmera para capturar fotos e vídeos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Este app precisa de acesso ao microfone para gravar vídeos com áudio</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Este app precisa de acesso à galeria para salvar fotos e vídeos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Este app precisa de acesso à galeria para selecionar fotos</string>
 </dict>
 </plist>
