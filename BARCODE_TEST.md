@@ -170,6 +170,23 @@ Para testar com dispositivo físico real:
    - Boletos
    - Tickets
 
+## 🎨 Suporte a Dark Mode
+
+O app detecta automaticamente o tema do dispositivo e ajusta as cores:
+
+### Modo Claro (Light Mode)
+- Fundo branco (#fff)
+- Textos pretos (#000)
+- Backgrounds cinza claro (#f5f5f5, #f0f0f0)
+
+### Modo Escuro (Dark Mode)
+- Fundo preto (#000)
+- Textos brancos (#fff)
+- Backgrounds cinza escuro (#1a1a1a)
+- StatusBar adaptada automaticamente
+
+**Testado em**: Celulares com dark mode ativo ✅
+
 ## 💡 Dicas
 
 - O scanner funciona melhor com boa iluminação
@@ -177,6 +194,7 @@ Para testar com dispositivo físico real:
 - Use a lanterna em ambientes escuros
 - O delay de 1.5s previne leituras duplicadas
 - A validação dupla garante leituras precisas
+- O app se adapta automaticamente ao tema do dispositivo
 
 ## 🐛 Troubleshooting
 

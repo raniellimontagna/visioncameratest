@@ -1,84 +1,6 @@
 import { useState } from "react";
-import { Alert, SafeAreaView, StyleSheet, Switch, Text, View } from "react-native";
+import { Alert, SafeAreaView, StyleSheet, Switch, Text, useColorScheme, View } from "react-native";
 import { BarcodeScanner } from "@/components";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    padding: 20,
-    backgroundColor: "#f5f5f5",
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  controls: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  controlLabel: {
-    fontSize: 16,
-  },
-  scannerContainer: {
-    marginTop: 20,
-    paddingHorizontal: 20,
-  },
-  scannerLabel: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 10,
-  },
-  resultContainer: {
-    marginTop: 30,
-    paddingHorizontal: 20,
-  },
-  resultLabel: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 10,
-  },
-  resultText: {
-    fontSize: 14,
-    padding: 15,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
-    fontFamily: "monospace",
-  },
-  scanHistory: {
-    marginTop: 20,
-    paddingHorizontal: 20,
-  },
-  historyLabel: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 10,
-  },
-  historyItem: {
-    padding: 10,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 6,
-    marginBottom: 8,
-    borderLeftWidth: 3,
-    borderLeftColor: "#fe4300",
-  },
-  historyText: {
-    fontSize: 12,
-    fontFamily: "monospace",
-  },
-  historyTime: {
-    fontSize: 10,
-    color: "#666",
-    marginTop: 4,
-  },
-});
 
 type ScanHistoryItem = {
   code: string;
@@ -86,6 +8,9 @@ type ScanHistoryItem = {
 };
 
 export function BarcodeScannerScreen() {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === "dark";
+
   const [isActive, setIsActive] = useState(true);
   const [torch, setTorch] = useState(false);
   const [lastScannedCode, setLastScannedCode] = useState<string>("");
@@ -102,6 +27,91 @@ export function BarcodeScannerScreen() {
     // Show alert
     Alert.alert("Código Escaneado", data, [{ text: "OK" }]);
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: isDark ? "#000" : "#fff",
+    },
+    header: {
+      padding: 20,
+      backgroundColor: isDark ? "#1a1a1a" : "#f5f5f5",
+      borderBottomWidth: 1,
+      borderBottomColor: isDark ? "#333" : "#ddd",
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: "bold",
+      marginBottom: 10,
+      color: isDark ? "#fff" : "#000",
+    },
+    controls: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: 10,
+    },
+    controlLabel: {
+      fontSize: 16,
+      color: isDark ? "#fff" : "#000",
+    },
+    scannerContainer: {
+      marginTop: 20,
+      paddingHorizontal: 20,
+    },
+    scannerLabel: {
+      fontSize: 16,
+      fontWeight: "600",
+      marginBottom: 10,
+      color: isDark ? "#fff" : "#000",
+    },
+    resultContainer: {
+      marginTop: 30,
+      paddingHorizontal: 20,
+    },
+    resultLabel: {
+      fontSize: 16,
+      fontWeight: "600",
+      marginBottom: 10,
+      color: isDark ? "#fff" : "#000",
+    },
+    resultText: {
+      fontSize: 14,
+      padding: 15,
+      backgroundColor: isDark ? "#1a1a1a" : "#f0f0f0",
+      borderRadius: 8,
+      fontFamily: "monospace",
+      color: isDark ? "#fff" : "#000",
+    },
+    scanHistory: {
+      marginTop: 20,
+      paddingHorizontal: 20,
+    },
+    historyLabel: {
+      fontSize: 16,
+      fontWeight: "600",
+      marginBottom: 10,
+      color: isDark ? "#fff" : "#000",
+    },
+    historyItem: {
+      padding: 10,
+      backgroundColor: isDark ? "#1a1a1a" : "#f9f9f9",
+      borderRadius: 6,
+      marginBottom: 8,
+      borderLeftWidth: 3,
+      borderLeftColor: "#fe4300",
+    },
+    historyText: {
+      fontSize: 12,
+      fontFamily: "monospace",
+      color: isDark ? "#fff" : "#000",
+    },
+    historyTime: {
+      fontSize: 10,
+      color: isDark ? "#999" : "#666",
+      marginTop: 4,
+    },
+  });
 
   return (
     <SafeAreaView style={styles.container}>
