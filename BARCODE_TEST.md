@@ -10,6 +10,7 @@ A lógica do Barcode Scanner foi replicada com sucesso do projeto original! O co
 - ✅ Controle de delay entre leituras (padrão: 1500ms)
 - ✅ Validação de 2 leituras consecutivas antes de processar
 - ✅ **Ignora automaticamente CEPs** (formato 00000-000 ou 00000000)
+- ✅ **Ignora códigos com menos de 5 caracteres**
 - ✅ Suporte a lanterna (torch)
 - ✅ Controle de ativação do scanner
 - ✅ Linha vermelha de indicação
@@ -91,24 +92,29 @@ Define todos os tipos de códigos suportados:
 
 A lógica é **idêntica** ao projeto original + validações extras:
 
-1. **Validação de CEP**:
+1. **Validação de Tamanho Mínimo**:
+   - Ignora códigos com menos de 5 caracteres
+   - Previne leituras parciais ou ruído
+   - Log no console para debug
+
+2. **Validação de CEP**:
    - Ignora automaticamente códigos no formato de CEP
    - Formatos ignorados: `00000-000` ou `00000000`
    - Previne leituras acidentais de endereços
 
-2. **Validação de Leituras Consecutivas**:
+3. **Validação de Leituras Consecutivas**:
    - Requer 2 leituras do mesmo código para validar
    - Previne leituras acidentais ou parciais
 
-3. **Controle de Delay**:
+4. **Controle de Delay**:
    - Delay configurável entre leituras (padrão 1500ms)
    - Previne múltiplas leituras do mesmo código
 
-4. **Estado de Delay**:
+5. **Estado de Delay**:
    - Após processar um código, entra em estado de delay
    - Ignora novas leituras durante o delay
 
-5. **Refs para Performance**:
+6. **Refs para Performance**:
    - Usa refs para evitar re-renders desnecessários
    - `lastScanTime`, `lastScannedCode`, `consecutiveValidScans`
 
