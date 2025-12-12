@@ -1,11 +1,11 @@
 import { StatusBar } from "react-native";
-import { CameraScreen } from "@/screens";
+import { BarcodeScannerScreen } from "@/screens";
 
 function App(): JSX.Element {
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="#000" />
-      <CameraScreen />
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <BarcodeScannerScreen />
     </>
   );
 }
