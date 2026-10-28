@@ -1,5 +1,8 @@
 # React Native Vision Camera - Projeto de Testes
 
+> [!WARNING]
+> **Discontinued.** This experiment with react-native-vision-camera is no longer maintained and the repository is archived (read-only).
+
 Projeto React Native dedicado a testes e experimentação com a biblioteca [react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera), uma poderosa biblioteca para captura de fotos e vídeos com recursos avançados de câmera.
 
 ## 📋 Índice
